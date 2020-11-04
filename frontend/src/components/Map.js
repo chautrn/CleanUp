@@ -1,44 +1,29 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components'
-import L from 'leaflet';
+import { Map as MapContainer, TileLayer } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import mapTiles from './mapTiles';
 
-const MapDisplay = styled.div`
-	height: 100vh;
-	width: 100vw;
-`;
-
 const Map = (props, ref) => {
-
-	// build map on page start up
-	const mapRef = useRef();
-	useEffect(() => {
-		mapRef.current = L.map('map', {
-			center: [39.8283, -98.5795], // center of the U.S.
-			zoom: 5,
-			layers: [
-				mapTiles.lightTheme	
-			]
-		});
-	}, []);
-
+	const [mapTheme, setMapTheme] = useState(mapTiles.lightTheme)
 	useEffect(() => {
 		if (props.isDark) {
-			mapRef.current.removeLayer(mapTiles.lightTheme);
-			mapRef.current.addLayer(mapTiles.darkTheme);
+			setMapTheme(mapTiles.darkTheme);
 		}
 		else {
-			mapRef.current.removeLayer(mapTiles.darkTheme);
-			mapRef.current.addLayer(mapTiles.lightTheme);
+			setMapTheme(mapTiles.lightTheme);
 		}
-	});
+	}, [props.isDark]);
 
 	return(
 		<div id='wrapper'>
-			<MapDisplay id='map'>
+			<MapContainer style={{height: '100vh', width: '100vw'}}center={[51, -20]} zoom={6}>
+				<TileLayer 
+					url={mapTheme.url}
+					attribution={mapTheme.attribution}
+				/>
 				{props.children}
-			</MapDisplay>
+			</MapContainer>
 		</div> 
 	);
 };

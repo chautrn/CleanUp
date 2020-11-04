@@ -1,30 +1,44 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import styled from 'styled-components'
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
-import styled from 'styled-components'
+import mapTiles from './mapTiles';
 
-const Map = () => {
-	const MapDisplay = styled.div`
-		height: 100vh;
-		width: 100vw;
-	`
+const MapDisplay = styled.div`
+	height: 100vh;
+	width: 100vw;
+`;
 
+const Map = (props, ref) => {
+
+	// build map on page start up
+	const mapRef = useRef();
 	useEffect(() => {
-		L.map('map', {
-			center: [49.8419, 24.0315],
-			zoom: 16,
+		mapRef.current = L.map('map', {
+			center: [39.8283, -98.5795], // center of the U.S.
+			zoom: 5,
 			layers: [
-				L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-					attribution:
-					'&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-				}),
+				mapTiles.lightTheme	
 			]
 		});
 	}, []);
 
+	useEffect(() => {
+		if (props.isDark) {
+			mapRef.current.removeLayer(mapTiles.lightTheme);
+			mapRef.current.addLayer(mapTiles.darkTheme);
+		}
+		else {
+			mapRef.current.removeLayer(mapTiles.darkTheme);
+			mapRef.current.addLayer(mapTiles.lightTheme);
+		}
+	});
+
 	return(
 		<div id='wrapper'>
-			<MapDisplay id='map'/> 
+			<MapDisplay id='map'>
+				{props.children}
+			</MapDisplay>
 		</div> 
 	);
 };

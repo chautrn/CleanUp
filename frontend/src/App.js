@@ -1,12 +1,14 @@
 import React from 'react';
 import './App.css';
-import Home from './pages/Home';
+import Map from './pages/Map';
+import BottomNav from './components/BottomNav';
 
 function App() {
 	return (
-	<div className="App">
-		<Home />
-	</div>
+		<div className='App'>
+			<Map />
+			<BottomNav currentPage='Map' />
+		</div>
 	);
 }
 

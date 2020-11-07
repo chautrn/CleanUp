@@ -2,6 +2,7 @@
 Gamifying environmental clean-up efforts by connecting others.
 
 11/7/2020
+
 FRONTEND TODO:
 - Feed page
   * Continuously grab posts from API

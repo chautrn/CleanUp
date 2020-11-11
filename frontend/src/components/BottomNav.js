@@ -1,5 +1,6 @@
 import { BottomNavigation, BottomNavigationAction } from '@material-ui/core';
 import { ArtTrack, Map, Assignment, Pets, AccountBox } from '@material-ui/icons';
+import { useHistory } from 'react-router-dom';
 
 const style = {
 	position: 'fixed',
@@ -10,9 +11,15 @@ const style = {
 }
 
 const BottomNav = props => {
+	const history = useHistory();
+
+	const goToRoute = (event, newValue) => {
+		history.push(`/${newValue}`);
+	}
+
 	return(
-		<BottomNavigation style={style} onChange={props.navHandler}>
-			<BottomNavigationAction label='Feed' value='feed' icon={<ArtTrack />} />
+		<BottomNavigation style={style} onChange={goToRoute}>
+			<BottomNavigationAction label='Feed' value='' icon={<ArtTrack />} />
 			<BottomNavigationAction label='Map' value='map' icon={<Map />} />
 			{props.currentPage == 'Map' &&
 			<BottomNavigationAction label='Add Event' value='eventAdd' icon={<Assignment />} />

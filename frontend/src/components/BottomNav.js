@@ -5,7 +5,8 @@ const style = {
 	position: 'fixed',
 	zIndex: '9999',
 	bottom: 0,
-	width: '100vw'
+	width: '100vw',
+	boxShadow: '0px 5px 11px 2px #a8a8a8'
 }
 
 const BottomNav = props => {

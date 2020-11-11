@@ -2,7 +2,7 @@ import { BottomNavigation, BottomNavigationAction } from '@material-ui/core';
 import { ArtTrack, Map, Assignment, Pets, AccountBox } from '@material-ui/icons';
 
 const style = {
-	position: 'absolute',
+	position: 'fixed',
 	zIndex: '9999',
 	bottom: 0,
 	width: '100vw'
@@ -10,7 +10,7 @@ const style = {
 
 const BottomNav = props => {
 	return(
-		<BottomNavigation style={style}onChange={props.navHandler}>
+		<BottomNavigation style={style} onChange={props.navHandler}>
 			<BottomNavigationAction label='Feed' value='feed' icon={<ArtTrack />} />
 			<BottomNavigationAction label='Map' value='map' icon={<Map />} />
 			{props.currentPage == 'Map' &&

@@ -1,12 +1,13 @@
 import React from 'react';
 import './App.css';
 import Map from './pages/Map';
+import Home from './pages/Home';
 import BottomNav from './components/BottomNav';
 
 function App() {
 	return (
 		<div className='App'>
-			<Map />
+			<Home />
 			<BottomNav currentPage='Map' />
 		</div>
 	);

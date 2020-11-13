@@ -16,6 +16,9 @@ const useStyles = makeStyles((theme) => ({
 		maxWidth: '100%',
 		marginBottom: '50px',
 	},
+	title: {
+		color: theme.palette.main
+	},
 	media: {
 		height: 0,
 		paddingTop: '56.25%',
@@ -41,7 +44,9 @@ const Post = props => {
 				<CardMedia
 					className={classes.media}
 					image='/'
-					title='Paella dish'
+					title={
+						<h1 className={classes.title}>By Chau Tran</h1>
+					}
 				/>
 				<CardContent>
 					<Typography variant='body2' color='textSecondary' component='p'>

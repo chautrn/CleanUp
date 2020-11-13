@@ -73,7 +73,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'leadmanager.wsgi.application'
+# WSGI_APPLICATION = 'leadmanager.wsgi.application'
 
 
 # Database
